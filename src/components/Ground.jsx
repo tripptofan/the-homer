@@ -24,10 +24,10 @@ const Ground = () => {
       />
       
       {/* Add buildings */}
-      <Buildings />
+      {/* <Buildings /> */}
       
       {/* Add ramps */}
-      <Ramps />
+      {/* <Ramps /> */}
     </mesh>
   );
 };

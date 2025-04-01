@@ -80,6 +80,9 @@ const DrivingGame = () => {
   }, []);
   
   // Update car position and rotation
+// In the DrivingGame.jsx file, find the useFrame function and update the camera position logic:
+
+  // Update car position and rotation
   useFrame(() => {
     if (!carRef.current) return;
     
@@ -107,11 +110,11 @@ const DrivingGame = () => {
     
     // Update camera position to follow the car
     if (cameraRef.current) {
-      // Position camera behind the car
+      // Position camera behind the car - adjusted for The Homer model
       const cameraOffset = new Vector3(
-        -Math.sin(carRotation) * 5,
-        3,
-        -Math.cos(carRotation) * 5
+        -Math.sin(carRotation) * 7, // Increased distance behind
+        4, // Higher camera position
+        -Math.cos(carRotation) * 7 // Increased distance behind
       );
       
       // Smoothly move camera to new position
@@ -120,8 +123,13 @@ const DrivingGame = () => {
         0.1
       );
       
-      // Make camera look at car
-      cameraRef.current.lookAt(...carPosition);
+      // Make camera look at car with a slight offset for better view
+      const lookAtPosition = new Vector3(
+        carPosition[0], 
+        carPosition[1] + 1.5, // Look slightly above the car
+        carPosition[2]
+      );
+      cameraRef.current.lookAt(lookAtPosition);
     }
   });
 
